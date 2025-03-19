@@ -1,7 +1,7 @@
 # mid_2025
 
 A new Flutter project.
-
+# for demo please refer to the snaps
 ## Getting Started
 
 This project is a starting point for a Flutter application.
