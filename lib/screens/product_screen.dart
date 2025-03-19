@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import '../bloc/product/product_bloc.dart';
 import '../bloc/product/product_state.dart';
+import '../bloc/theme/theme_bloc.dart';
+import '../bloc/theme/theme_event.dart';
+import '../bloc/theme/theme_state.dart';
 import '../model/product.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductScreen extends StatelessWidget {
+  const ProductScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +40,7 @@ class ProductScreen extends StatelessWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 8,
                   mainAxisSpacing: 8,
-                  childAspectRatio: 0.65,
+                  childAspectRatio: 0.55,
                 ),
                 itemCount: state.products.length,
                 itemBuilder: (context, index) {
@@ -77,7 +82,7 @@ class ProductScreen extends StatelessWidget {
 class ProductCard extends StatelessWidget {
   final Product product;
 
-  const ProductCard({Key? key, required this.product}) : super(key: key);
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +103,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 child: Image.network(
                   product.image,
-                  height: 120,
+                  height: 160,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -137,10 +142,7 @@ class ProductCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "MEN'S CLOTHING",
-                  style: TextStyle(color: Colors.blueAccent[700], fontSize: 12),
-                ),
+                Text("", style: TextStyle(color: Colors.purple, fontSize: 12)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -159,7 +161,7 @@ class ProductCard extends StatelessWidget {
                       children: [
                         Icon(Icons.star, color: Colors.amber, size: 16),
                         Text(
-                          "${product.rating}",
+                          "${product.rating.rate}",
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
@@ -177,11 +179,6 @@ class ProductCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    // if (product.price < product.originalPrice)
-                    //   Text(
-                    //     "  \$${product.originalPrice}",
-                    //     style: TextStyle(color: Colors.white54, decoration: TextDecoration.lineThrough),
-                    //   ),
                   ],
                 ),
                 SizedBox(height: 8),
